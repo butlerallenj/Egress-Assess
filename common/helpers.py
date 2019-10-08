@@ -63,6 +63,11 @@ def cli_parser():
         "--password", metavar="pass123", default=None,
         help="Password for FTP server authentication.")
 
+    smb_options= parser.add_argument_group('SMB Options')
+    smb_options.add_argument(
+        "--smb2", default=False, action='store_true',
+        help="Enable SMB v2 Support")
+
     data_content = parser.add_argument_group('Data Content Options')
     data_content.add_argument(
         "--file", default=None, metavar='/root/test.jpg',
@@ -143,6 +148,9 @@ def randomString(length=-1):
     random_string = ''.join(random.choice(string.ascii_letters) for x in range(length))
     return random_string
 
+def received_file(filename):
+    print("[+] {} - Received File - {}".format(time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()), filename))
+
 
 def title_screen():
     os.system('clear')
@@ -189,13 +197,13 @@ M                                                                M
 M       .”cCCc”.                                                 M
 M      /cccccccc\\           Our Upcoming Trainings:              M
 M      §cccccccc|                                                M
-M      :ccccccccP           NOLACON  >> May 13-16 2019           M
-M      \\cccccccc()                      New Orleans              M
-M       \\ccccccccD                      www.nolacon.com          M
+M      :ccccccccP       44Con >> Dec 02- Dec 05 2019             M
+M      \\cccccccc()                 London, England               M
+M       \\ccccccccD              http://44con.com                 M
 M       |cccccccc\\       _                                       M
-M       |ccccccccc)     //  BLACKHAT >> August 3-6               M
-M       |cccccc|=      //               Las Vegas                M
-M      /°°°°°°”-.     (CCCC)            www.blackhat.com/us-19   M
+M       |ccccccccc)     //    Charlotte >> August 3-6            M
+M       |cccccc|=      //               Charlotte, NC            M
+M      /°°°°°°”-.     (CCCC)                                     M
 M      ;----._  _._   |cccc|                                     M
 M   .*°       °°   °. \\cccc/                                     M
 M  /  /       (      )/ccc/                                      M
